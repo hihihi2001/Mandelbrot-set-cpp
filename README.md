@@ -55,4 +55,4 @@ Az iterációs limit állításának hatása a képre.
 A különböző colormapek.
 ![image](https://user-images.githubusercontent.com/42745647/165778969-5ef6dc73-a68a-4e7a-965a-a19b808f37e0.png)
 ![image](https://user-images.githubusercontent.com/42745647/165779859-4414b0d0-a69e-4095-b49f-a273f1719ac0.png)
-
+A szám felbontási limitje (floatnál ~10^-5; doublenál ~10^-15)
