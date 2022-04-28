@@ -3,7 +3,6 @@ Ez a program kirajzolja a [Mandelbrot halmazt](https://en.wikipedia.org/wiki/Man
 ![image](https://user-images.githubusercontent.com/42745647/165781906-95ee7503-dd38-44bb-96b2-d117802596b8.png)
 ## Futtatás
 ### Fordítás
-* Mellékeltem 3 exe filet, amik közvetlenül futtathatók. (cpu_slowest.exe, cpu_fastest.exe, cpu_fastest_float.exe) **TODO!!!!!!**
 * Le lehet tölteni a teljes VS projektet (mandelbrot VS projekt.zip), ami kicsomagolás után szerkeszthető Visual Studioban, a megfelekő könyvtárak telepítése után
   * Le kell tölteni Agner Fog [Vector Class Library](https://github.com/vectorclass/version2)-ját. ([VCL manual](https://www.agner.org/optimize/vcl_manual.pdf))
   * Telepíteni kell az [OpenCV](https://learnopencv.com/code-opencv-in-visual-studio/)-t
