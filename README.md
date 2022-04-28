@@ -1,6 +1,6 @@
 # Mandelbrot set C++
 Ez a program kirajzolja a [Mandelbrot halmazt](https://en.wikipedia.org/wiki/Mandelbrot_set) különböző hardvarre optimalizált módszerekkel.
-![image](https://user-images.githubusercontent.com/42745647/165772405-47400d78-089c-47ab-9ca7-9520d7ae53f0.png)
+![image](https://user-images.githubusercontent.com/42745647/165781906-95ee7503-dd38-44bb-96b2-d117802596b8.png)
 ## Futtatás
 ### Fordítás
 * Mellékeltem 3 exe filet, amik közvetlenül futtathatók. (cpu_slowest.exe, cpu_fastest.exe, cpu_fastest_float.exe) **TODO!!!!!!**
