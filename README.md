@@ -25,19 +25,19 @@ A kép változtatható a billentyűzettel, amennyiben az OpenCV ablaka az aktív
 A konzolban megjeleník a nagyítás, iterációs limit, és a renderidő
 ## Optimalizálás
 A különböző futási idők:
-(Alapértelmezett kép, legalább 10 képkockából átlagolva, ezredmásodpercben)
-		    +-----------+-----------+<br/>
-[millisec]	    |   float 	|   double  |<br/>
+(Alapértelmezett kép, legalább 10 képkockából átlagolva, ezredmásodpercben)<br/>
+                    +-----------+-----------+<br/>
+[millisec]          |   float   |   double  |<br/>
 --------------------+-----------+-----------+<br/>
-naiv		    |	  562	|  432	    |<br/>
+naiv                |    562    |   432     |<br/>
 --------------------+-----------+-----------+<br/>
-naiv multithread    |	  182	|  143	    |<br/>
+naiv multithread    |    182    |   143     |<br/>
 --------------------+-----------+-----------+<br/>
-CPU optimalized	    |	  142	|  271	    |<br/>
+CPU optimalized     |    142    |   271     |<br/>
 --------------------+-----------+-----------+<br/>
-CPU multi thread    |	  59	|  129      |<br/>
+CPU multi thread    |    59     |   129     |<br/>
 --------------------+-----------+-----------+<br/>
-GPU  	            |      coming soon      |<br/>
+GPU                 |      coming soon      |<br/>
 --------------------+-----------+-----------+<br/>
 
 
