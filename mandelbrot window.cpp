@@ -11,8 +11,7 @@ using namespace cv;
 
 int main()
 {
-	// set tiltle with bitmagic instead of windows.h
-	cout << "\033]0;" << "Mandelbrot set by Kozak Aron" << "\007";
+	system("title Mandelbrot set by Kozak Aron");
 	// variables:
 	Measure Stopper = Measure();
 	Mat image = Mat::zeros(1024, 2048, CV_8UC3);
