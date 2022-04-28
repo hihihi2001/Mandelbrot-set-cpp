@@ -33,6 +33,12 @@ A különböző futási idők:
 | CPU optimalized   | 142    | 271    |
 | CPU multi thread  | 59     | 129    |
 | GPU               | coming | soon   |
+Specs:
+ Intel Core i5-4310M @ 2.70GHz  
+ 2 cores; 4 threads; 2.70-3.40 GHz  
+ cache 128 KB, 512 KB, 3 MB;  
+ AVX2 --> (256 bit vector registers)  
+
 
 
 ![image](https://user-images.githubusercontent.com/42745647/165688726-ef57f7ff-da7a-4a69-aa62-bc4c334fe46c.png)
