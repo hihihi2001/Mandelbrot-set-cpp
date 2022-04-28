@@ -7,7 +7,7 @@ Ez a program kirajzolja a [Mandelbrot halmazt](https://en.wikipedia.org/wiki/Man
   * Le kell tölteni Agner Fog [Vector Class Library](https://github.com/vectorclass/version2)-ját. ([VCL manual](https://www.agner.org/optimize/vcl_manual.pdf))
   * Telepíteni kell az [OpenCV](https://learnopencv.com/code-opencv-in-visual-studio/)-t
   * Állítsd a fordítót x64-re, C++17-re, és Realeasre (Debug módban a VCL használhatatlanul lassú)
-* A kódokból új fálj fordítható (mandelbrot window.cpp, otherFunctions.h, naivSolution.h, naivMultiThread.h, cpuOptSolution.h, cpuOptMultiThread.h)
+* A kódok más IDE-vel is fordíthatóak (mandelbrot window.cpp, otherFunctions.h, naivSolution.h, naivMultiThread.h, cpuOptSolution.h, cpuOptMultiThread.h)
 ### Beállítások
 A kódban lehet állítani:
 * felbontás: (*mandelbrot window.cpp* 18. sor) Mat image = Mat::zeros(1024, 2048, CV_8UC3); // Legyen a szélesség (2048) a 16 többszöröse
@@ -26,18 +26,19 @@ A konzolban megjeleník a nagyítás, iterációs limit, és a renderidő
 ## Optimalizálás
 A különböző futási idők:
 (Alapértelmezett kép, legalább 10 képkockából átlagolva, ezredmásodpercben)
-					          +-----------+-----------+
-	[millisec]		    |   float	  |	double    |
---------------------+-----------+-----------+
-naiv				        |	  562		  |	  432		  |
---------------------+-----------+-----------+
-naiv multithread	  |	  182		  |	  143		  |	
---------------------+-----------+-----------+
-CPU optimalized		  |	  142		  |	  271		  |
---------------------+-----------+-----------+
-CPU multi thread	  |	  59	  	|	  129	  	|
---------------------+-----------+-----------+
-GPU  	              |	     coming soon      |
---------------------+-----------+-----------+
+		    +-----------+-----------+<br/>
+[millisec]	    |   float 	|   double  |<br/>
+--------------------+-----------+-----------+<br/>
+naiv		    |	  562	|  432	    |<br/>
+--------------------+-----------+-----------+<br/>
+naiv multithread    |	  182	|  143	    |<br/>
+--------------------+-----------+-----------+<br/>
+CPU optimalized	    |	  142	|  271	    |<br/>
+--------------------+-----------+-----------+<br/>
+CPU multi thread    |	  59	|  129      |<br/>
+--------------------+-----------+-----------+<br/>
+GPU  	            |      coming soon      |<br/>
+--------------------+-----------+-----------+<br/>
+
 
 ![image](https://user-images.githubusercontent.com/42745647/165688726-ef57f7ff-da7a-4a69-aa62-bc4c334fe46c.png)
