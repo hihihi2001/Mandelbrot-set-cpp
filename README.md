@@ -2,12 +2,18 @@
 Ez a program kirajzolja a [Mandelbrot halmazt](https://en.wikipedia.org/wiki/Mandelbrot_set) különböző hardvarre optimalizált módszerekkel.
 ![image](https://user-images.githubusercontent.com/42745647/165781906-95ee7503-dd38-44bb-96b2-d117802596b8.png)
 ## Futtatás
+### Tartalom
+* *mandelbrot window.cpp* - (main) megjelenítés, keyboard input
+* *otherFunctions.h* - includeok, chrono library-n alapuló időméárő osztály, colormapek
+* *naivSolution.h*, *naivMultiThread.h*, *cpuOptSolution.h*, *cpuOptMultiThread.h* - Mandelbrot halmaz kirajzolása különböző módokon optimalzálva (lásd lentebb)
+* *mandelbrot VS projekt.zip* - Visual Studio teljes projekt (a fenti fáljok)
+* *colormap stealer.ipynb* - A Python Matplotlib könyvtárának bármely colormapjét el tudja "lopni"
 ### Fordítás
 * Le lehet tölteni a teljes VS projektet (mandelbrot VS projekt.zip), ami kicsomagolás után szerkeszthető Visual Studioban, a megfelekő könyvtárak telepítése után
   * Le kell tölteni Agner Fog [Vector Class Library](https://github.com/vectorclass/version2)-ját. ([VCL manual](https://www.agner.org/optimize/vcl_manual.pdf))
   * Telepíteni kell az [OpenCV](https://learnopencv.com/code-opencv-in-visual-studio/)-t
   * Állítsd a fordítót x64-re, C++17-re, és Realeasre (Debug módban a VCL használhatatlanul lassú)
-* A kódok más IDE-vel is fordíthatóak (mandelbrot window.cpp, otherFunctions.h, naivSolution.h, naivMultiThread.h, cpuOptSolution.h, cpuOptMultiThread.h)
+* A kódok más IDE-vel is fordíthatóak (*mandelbrot window.cpp*, *otherFunctions.h*, *naivSolution.h*, *naivMultiThread.h*, *cpuOptSolution.h*, *cpuOptMultiThread.h*)
 ### Beállítások
 A kódban lehet állítani:
 * felbontás: (*mandelbrot window.cpp* 18. sor) Mat image = Mat::zeros(1024, 2048, CV_8UC3); // Legyen a szélesség (2048) a 16 többszöröse
