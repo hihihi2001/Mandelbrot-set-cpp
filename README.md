@@ -3,27 +3,30 @@ Ez a program kirajzolja a [Mandelbrot halmazt](https://en.wikipedia.org/wiki/Man
 ![image](https://user-images.githubusercontent.com/42745647/165781906-95ee7503-dd38-44bb-96b2-d117802596b8.png)
 ## Futtatás
 ### Tartalom
-* *mandelbrot window.cpp* - (main) megjelenítés, keyboard input
-* *otherFunctions.h* - includeok, chrono library-n alapuló időméárő osztály, colormapek
-* *naivSolution.h*, *naivMultiThread.h*, *cpuOptSolution.h*, *cpuOptMultiThread.h* - Mandelbrot halmaz kirajzolása különböző módokon optimalzálva (lásd lentebb)
-* *mandelbrot VS projekt.zip* - Visual Studio teljes projekt (a fenti fáljok)
-* *colormap stealer.ipynb* - A Python Matplotlib könyvtárának bármely colormapjét el tudja "lopni"
-* *GPU* mappa - Tartalmazza a CUDA-ban írt megoldást, ami pont ugyanolyan képet készít, de azt nem tudja kirajzolni, helyette bitmap (.bmp) formátumban menti
- * *kernel.cu* - A main file, a kirajzolással
- * *Header.cuh* - Header a colormappel és mentést végző függvényekkel
- * *DeviceProperties.cuh* - A gpu tulajdonságainak kiírásához (A BME HDR Tanszék tulajdona)
+* *CPU* mappa - Az OpenCV-vel írt megoldás, ami valós időben kirajzolja a képet
+   * *mandelbrot window.cpp* - (main) megjelenítés, keyboard input
+   * *otherFunctions.h* - includeok, chrono library-n alapuló időméárő osztály, colormapek
+   * *naivSolution.h*, *naivMultiThread.h*, *cpuOptSolution.h*, *cpuOptMultiThread.h* - Mandelbrot halmaz kirajzolása különböző módokon optimalzálva (lásd lentebb)
+   * *CPU.zip* - Visual Studio teljes projekt (a fenti fáljokkal)
+* *GPU* mappa - A CUDA-ban írt megoldást, ami pont ugyanolyan képet készít, de azt nem tudja kirajzolni, helyette bitmap (.bmp) formátumban menti
+   * *kernel.cu* - A main file, a kirajzolással
+   * *Header.cuh* - Header a colormappel és mentést végző függvényekkel
+   * *DeviceProperties.cuh* - A gpu tulajdonságainak kiírásához (A BME HDR Tanszék tulajdona)
+* *colormap stealer.ipynb* - A Python Matplotlib könyvtárának bármely colormapjét el tudja "lopni" 
 ### Fordítás
-* Le lehet tölteni a teljes VS projektet (mandelbrot VS projekt.zip), ami kicsomagolás után szerkeszthető Visual Studioban, a megfelekő könyvtárak telepítése után
-  * Le kell tölteni Agner Fog [Vector Class Library](https://github.com/vectorclass/version2)-ját. ([VCL manual](https://www.agner.org/optimize/vcl_manual.pdf))
-  * Telepíteni kell az [OpenCV](https://learnopencv.com/code-opencv-in-visual-studio/)-t
-  * Állítsd a fordítót x64-re, C++17-re, és Realeasre (Debug módban a VCL használhatatlanul lassú)
-* A kódok más IDE-vel is fordíthatóak (*mandelbrot window.cpp*, *otherFunctions.h*, *naivSolution.h*, *naivMultiThread.h*, *cpuOptSolution.h*, *cpuOptMultiThread.h*)
+Le lehet tölteni a teljes VS projektet (GPU.zip, és CPU.zip), ami kicsomagolás után szerkeszthető Visual Studioban, a megfelekő könyvtárak telepítése után
+* Le kell tölteni Agner Fog [Vector Class Library](https://github.com/vectorclass/version2)-ját. ([VCL manual](https://www.agner.org/optimize/vcl_manual.pdf))
+* Telepíteni kell az [OpenCV](https://learnopencv.com/code-opencv-in-visual-studio/)-t
+* Állítsd a fordítót x64-re, C++17-re, és Realeasre (Debug módban a VCL használhatatlanul lassú)
+* A GPU-s megoldáshoz telepíten kell a [CUDA](https://docs.nvidia.com/cuda/pdf/CUDA_Installation_Guide_Windows.pdf)-t
 ### Beállítások
-A kódban lehet állítani:
+A CPU-s kódban lehet állítani:
 * felbontás: (*mandelbrot window.cpp* 18. sor) Mat image = Mat::zeros(1024, 2048, CV_8UC3); // Legyen a szélesség (2048) a 16 többszöröse
 * kirajzolás módja: (*mandelbrot window.cpp* 33-36. sor) Pontosan az egyik kirajzoló függvény ne legyen kikommentezve
 * float használata double helyett: (*otherFunctions.h* 15. sor) definiáld a USE_FLOAT konstanst, ha floatot szeretnél. (Így a maximális nagyítás 10^-14 helyett 10^-5; a VCL-es kirajzolás sokkal gyorsabb; összehasonlítható majd a GPU-val)
 * colormap: (*otherFunctions.h*, 15-20. sor) definiáld a VIRIDIS, GIST_RAINBOW, HOT, PLASMA konstansok valamelyikét, vagy egyiket se, hogy grayscale képet kapj. A colormapeket a Python Matplotlib könyvtárából szedtem ki a *colormap stealer.ipynb* -vel
+
+A GPU-s kódban a felbontás a const int width, height paraméterekkel állítható. A colormap HOT. Double használatát a #define NUMBER float cseréjével érheted el.
 ### Irányítás
 A kép változtatható a billentyűzettel, amennyiben az OpenCV ablaka az aktív
 * Mozgás: asdw
@@ -32,6 +35,7 @@ A kép változtatható a billentyűzettel, amennyiben az OpenCV ablaka az aktív
 * Alaphelyzetbe állás: r
 * Kilépés: ESC
 * Renderelés: bármely billenytyű, kivéve az ESC
+
 A konzolban megjeleník a nagyítás, iterációs limit, és a renderidő
 ## Optimalizálás
 A különböző futási idők:
@@ -58,8 +62,10 @@ Computer specs:
   NVIDIA GeForce GTX 1050 Ti
   4095 Mb memory
   2048 threads, 32 warp size
+  FP32 (float) performance: 2.138 TFLOPS
+  FP64 (double) performance: 66.82 GFLOPS (1:32)
   
- | [millisec]        | float  | double |
+ | [millisec]       | float  | double |
 |-------------------|--------|--------|
 | naiv              | 641    | 494    |
 | naiv multithread  | 192    | 119    |
@@ -72,7 +78,7 @@ Megoldások:
 * **Multithread naiv megoldás:** Kihasználja az összes szálat (thread library), de ugyanúgy az alap típusokat (int, double) használja. Minden szál aktív, amíg van olyan sor, amit nem kezdett el renderelni egy másik szál. Nagyjából 3,3-szor gyorsabb a naiv megoldásnál (4 mag, 4 szál) float esetén, és 4,2-szer double esetén.
 * **CPU-ra optimalizált megoldás:**  Kihasználja a Vector Class Library 256 bites vektor regisztereit (4 double vagy 8 float), azaz Single Intstuction Multiple Data (SIMD) elven gyorsítja a futást. Floattal kb 5,2-szer gyorsabb, doublelel pedig 2-szer.
 * **CPU-ra optimalizált multithread megoldás:** A fentiekhez hasonlóan vektor regisztert használ, és többszálon fut. Float esetén 14,9-ször, double esetén 7,5-szor gyorsabb.
-* **GPU-ra írt megoldás:** hamarsan. ezzel vannak problémák :(
+* **GPU-ra írt megoldás:** 2048 szálon (64-es gridsize, 32-es blocksize) számol. Nem sokkal gyorsabb a CPU-nál, és alig van különbség a float és a double között, valszeg bénán írtam meg :(
 
 ## Galéria
 ![image](https://user-images.githubusercontent.com/42745647/165774675-5cb76e5a-a502-4567-a780-0441fbef135c.png)
