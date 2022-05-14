@@ -8,6 +8,10 @@ Ez a program kirajzolja a [Mandelbrot halmazt](https://en.wikipedia.org/wiki/Man
 * *naivSolution.h*, *naivMultiThread.h*, *cpuOptSolution.h*, *cpuOptMultiThread.h* - Mandelbrot halmaz kirajzolása különböző módokon optimalzálva (lásd lentebb)
 * *mandelbrot VS projekt.zip* - Visual Studio teljes projekt (a fenti fáljok)
 * *colormap stealer.ipynb* - A Python Matplotlib könyvtárának bármely colormapjét el tudja "lopni"
+* *GPU* mappa - Tartalmazza a CUDA-ban írt megoldást, ami pont ugyanolyan képet készít, de azt nem tudja kirajzolni, helyette bitmap (.bmp) formátumban menti
+ * *kernel.cu* - A main file, a kirajzolással
+ * *Header.cuh* - Header a colormappel és mentést végző függvényekkel
+ * *DeviceProperties.cuh* - A gpu tulajdonságainak kiírásához (A BME HDR Tanszék tulajdona)
 ### Fordítás
 * Le lehet tölteni a teljes VS projektet (mandelbrot VS projekt.zip), ami kicsomagolás után szerkeszthető Visual Studioban, a megfelekő könyvtárak telepítése után
   * Le kell tölteni Agner Fog [Vector Class Library](https://github.com/vectorclass/version2)-ját. ([VCL manual](https://www.agner.org/optimize/vcl_manual.pdf))
@@ -61,7 +65,7 @@ Computer specs:
 | naiv multithread  | 192    | 119    |
 | CPU optimalized   | 123    | 244    |
 | CPU multi thread  | 43     | 66     |
-| GPU               | coming | soon   |
+| GPU               | 36     | 46     |
   
 Megoldások:
 * **Naiv megoldás:** Egyszálon fut, beépített (int, double) típusokat használ. Ez a leglasabb.
