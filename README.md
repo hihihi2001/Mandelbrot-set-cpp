@@ -71,7 +71,7 @@ Computer specs:
 | naiv multithread  | 192    | 119    |
 | CPU optimalized   | 123    | 244    |
 | CPU multi thread  | 43     | 66     |
-| GPU               | 36     | 46     |
+| GPU               | 20     | 20     |
   
 Megoldások:
 * **Naiv megoldás:** Egyszálon fut, beépített (int, double) típusokat használ. Ez a leglasabb.
