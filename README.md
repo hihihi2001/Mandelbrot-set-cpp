@@ -78,7 +78,7 @@ Megoldások:
 * **Multithread naiv megoldás:** Kihasználja az összes szálat (thread library), de ugyanúgy az alap típusokat (int, double) használja. Minden szál aktív, amíg van olyan sor, amit nem kezdett el renderelni egy másik szál. Nagyjából 3,3-szor gyorsabb a naiv megoldásnál (4 mag, 4 szál) float esetén, és 4,2-szer double esetén.
 * **CPU-ra optimalizált megoldás:**  Kihasználja a Vector Class Library 256 bites vektor regisztereit (4 double vagy 8 float), azaz Single Intstuction Multiple Data (SIMD) elven gyorsítja a futást. Floattal kb 5,2-szer gyorsabb, doublelel pedig 2-szer.
 * **CPU-ra optimalizált multithread megoldás:** A fentiekhez hasonlóan vektor regisztert használ, és többszálon fut. Float esetén 14,9-ször, double esetén 7,5-szor gyorsabb.
-* **GPU-ra írt megoldás:** 2048 szálon (64-es gridsize, 32-es blocksize) számol. Nem sokkal gyorsabb a CPU-nál, és alig van különbség a float és a double között, valszeg bénán írtam meg :(
+* **GPU-ra írt megoldás:** Minden pixelre (~ 2 millió) külön CUDA magot hív meg. (Összesen 2048 van)
 
 ## Galéria
 ![image](https://user-images.githubusercontent.com/42745647/165774675-5cb76e5a-a502-4567-a780-0441fbef135c.png)
