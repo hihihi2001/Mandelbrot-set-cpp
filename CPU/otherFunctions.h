@@ -10,7 +10,7 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #define VCL_NAMESPACE vcl
-#define MAX_VECTDOR_SIZE 256
+#define MAX_VECTOR_SIZE 256
 #include "vectorclass.h"
 
 // define this to use floats instead of doubles
